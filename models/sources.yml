@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: snowflake_sample
+    database: snowflake_sample_data
+    schema: tpch_sf10
+    config:
+      enabled: true
+    tables:
+      - name: LINEITEM
+      - name: REGION
+      - name: NATION
+      - name: PARTSUPP
+      - name: CUSTOMER
+      - name: ORDERS
+      - name: PART
+      - name: SUPPLIER
