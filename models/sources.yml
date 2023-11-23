@@ -15,3 +15,10 @@ sources:
       - name: ORDERS
       - name: PART
       - name: SUPPLIER
+  - name: test_data
+    database: raw
+    schema: source
+    tables:
+      - name: Inc
+      - name: Status_Table
+      - name: scd
