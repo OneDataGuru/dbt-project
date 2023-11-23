@@ -3,7 +3,7 @@ version: 2
 models:
   - name: stg_LineItem
     config:
-      materialized: table
+      materialized: view
     tests:
       # - dbt_utils.unique_combination_of_columns:
       #     combination_of_columns:
@@ -12,8 +12,47 @@ models:
       - extended_unique:
           columns:
             - l_orderkey
-            # - l_linenumber
+            - l_linenumber
     columns:
       - name: l_orderkey
         tests:
           - not_null
+          - relationships:
+              field: o_orderkey
+              to: ref('stg_Orders')
+
+  - name: stg_Orders
+    description: Staging table for orders data
+    config:
+      materialized: view
+    columns:
+      - name: o_orderkey
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_Inc
+    description: Incrmental model to experiment on
+    config:
+      materialized: incremental
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+        
+  - name: stg_Nation
+    description: Nation dimension
+
+  - name: stg_Region
+    description: Region dimension
+    config:
+      materialized: table
+
+  - name: stg_Customer
+    config:
+      materialized: view
+  
+          
+
+  

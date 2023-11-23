@@ -43,3 +43,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 vars:
   date_limit: True
+
+snapshots:
+  my_new_project:
+    +target_database: analytics
+    +target_schema: snapshots
